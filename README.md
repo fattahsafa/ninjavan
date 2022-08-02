@@ -6,7 +6,7 @@
 * There are also a general properties files (test.properties) that contains the following properties:
     * **report.directory**: report root directory
     * **report.central.directory**=central report directory that contains the reports from the latest run (for CI pipeline use)
-    * **browser.type**: CHROME, FIREFOX OR EDGE
+    * **browser.type**: CHROME or EDGE (Tested using both of them)
     * **browser.driver.path**: the path to the webdriver
     * **browser.page**.load.timeout: implicit page wait timeout
     * **browser.element.detect.timeout**: implicit timeout to wait for the element
