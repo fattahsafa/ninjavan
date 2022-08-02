@@ -1,0 +1,7 @@
+<suite name="Suite of suites">
+    <parameter name="email" value="challenge2@ninjavan.co"/>
+    <parameter name="password" value="Ninjavan1234"/>
+    <suite-files>
+        <suite-file path="PrintAirwayBillTests.xml"></suite-file>
+    </suite-files>
+</suite>

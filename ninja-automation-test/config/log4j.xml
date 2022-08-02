@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration debug="true" xmlns:log4j='http://jakarta.apache.org/log4j/'>
+	<!-- Regular logger -->
+	<appender name="standardLog" class="org.apache.log4j.RollingFileAppender">
+		<param name="Threshold" value="INFO" />
+		<param name="append" value="false" />
+		<param name="maxFileSize" value="20MB" />
+		<param name="maxBackupIndex" value="100" />
+		<param name="file" value="./logs/test.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+			value="%d{yyyy-MM-dd HH:mm:ss} %-5p %t %c{1}:%L - %m%n" />
+		</layout>
+	</appender>
+	<!-- Regular logger -->
+	<appender name="debugLog" class="org.apache.log4j.RollingFileAppender">
+		<param name="Threshold" value="DEBUG" />
+		<param name="append" value="false" />
+		<param name="maxFileSize" value="20MB" />
+		<param name="maxBackupIndex" value="100" />
+		<param name="file" value="./logs/debug/test.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+			value="%d{yyyy-MM-dd HH:mm:ss} %-5p %t %c{1}:%L - %m%n" />
+		</layout>
+	</appender>
+	<!-- Error logger -->
+	<appender name="errorLog" class="org.apache.log4j.RollingFileAppender">
+		<param name="append" value="false" />
+		<param name="Threshold" value="ERROR" />
+		<param name="maxFileSize" value="20MB" />
+		<param name="maxBackupIndex" value="100" />
+		<param name="file" value="./logs/test_error.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+			value="%d{yyyy-MM-dd HH:mm:ss} %-5p %t %c{1}:%L - %m%n" />
+		</layout>
+	</appender>
+
+	<!-- log INFO or higher messages to the console -->
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="threshold" value="ERROR"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p %m%n"/>
+		</layout>
+	</appender>
+
+	
+	<!-- use AsyncAppender for lower latencies -->
+	<appender name="async" class="org.apache.log4j.AsyncAppender">
+		<param name="BufferSize" value="500"/>
+		<appender-ref ref="file"/>
+		<appender-ref ref="cassandra_log_file"/>
+		<!-- appender-ref ref="console"/-->
+	</appender>
+
+	<!--
+   Turn on slow query logging by setting this logger to DEBUG;
+   set level to TRACE to also log query parameters
+  
+	<logger name="com.datastax.driver.core.QueryLogger.SLOW">
+		<level value="ERROR"/>
+	</logger>
+	-->
+	
+	<!-- default logging -->
+	<root>
+		<priority value="DEBUG"/>
+		<appender-ref ref="standardLog"/>
+		<appender-ref ref="debugLog"/>
+		<appender-ref ref="errorLog"/>
+		<!--appender-ref ref="console"/-->
+	</root>
+
+</log4j:configuration>

@@ -1,0 +1,7 @@
+<suite name="Suite of suites">
+    <parameter name="clientID" value="challenge2@ninjavan.co"/>
+    <parameter name="clientSecret" value="Ninjavan1234"/>
+    <suite-files>
+        <suite-file path="CreateOrderTests.xml"></suite-file>
+    </suite-files>
+</suite>
